@@ -20,10 +20,17 @@ for (let i = 0; i < randomNums.length; i++) {
     numsDisplay.innerHTML += `<li>${randomNums[i]}</li>`;
 }
 
-setTimeout(guessing, 3000);
-function guessing() {
+setTimeout(hideNumbers, 3000);
+
+function hideNumbers() {
     numsDisplay.classList.add("hidden");
 
+    // viene aggiunto un ulteriore setTimeout perché gli alert e i prompt avrebbero la
+    // precedenza altrimenti, quindi i numeri verrebbero nascosti solo successivamente
+    setTimeout(guessing, 200);
+}
+
+function guessing() {
     alert("Tempo scaduto: ora devi inserire i numeri");
 
     for (let i = 0; i < numbersOfNums; i++) {
@@ -67,9 +74,4 @@ function generateNumbers(n) {
     }
 
     return numbers;
-}
-
-// nasconde i numeri generati
-function hideNumbers() {
-    numsDisplay.classList.add('hidden');
 }
